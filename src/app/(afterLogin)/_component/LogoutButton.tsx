@@ -7,7 +7,7 @@ export default function LogoutButton() {
     // 임시로 내 정보 있는것처럼
     id: "hm",
     nickname: "hm",
-    image: "/logo.jpg",
+    image: "/ice1.jpg",
   };
 
   const onLogout = () => {};

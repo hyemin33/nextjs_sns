@@ -5,6 +5,8 @@ import Image from "next/image";
 import Logo from "../../../public/logo.jpg";
 import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
 import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
+import TrendSection from "./_component/TrendSection";
+import FollowRecommend from "./_component/FollowRecommend";
 
 export default function AfterLoginLayout({
   children,
@@ -18,7 +20,7 @@ export default function AfterLoginLayout({
           <div className={style.leftSectionFixed}>
             <Link className={style.logo} href="/home">
               <div className={style.logoPill}>
-                <Image src={Logo} alt="z.com로고" width={40} height={40} />
+                <Image src={Logo} alt="로고" width={40} height={40} />
               </div>
             </Link>
             <nav>
@@ -46,6 +48,13 @@ export default function AfterLoginLayout({
                 </svg>
                 <input type="search" />
               </form>
+              <TrendSection />
+              <div className={style.followRecomend}>
+                <h3>팔로우 추천</h3>
+                <FollowRecommend />
+                <FollowRecommend />
+                <FollowRecommend />
+              </div>
             </div>
           </section>
         </div>
