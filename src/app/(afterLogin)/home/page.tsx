@@ -8,20 +8,8 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-
-async function getPostRecommends() {
-  const res = await fetch(`http://localhost:9090/api/postRecommends`, {
-    next: {
-      tags: ["posts", "recommends"],
-    },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("fetch 실패");
-  }
-  return res.json();
-}
+import PostRecommends from "./_component/PostRecommends";
+import { getPostRecommends } from "./_lib/getPostRecommends";
 
 export default async function Home() {
   const queryClient = new QueryClient();
@@ -37,9 +25,7 @@ export default async function Home() {
         <TabProvider>
           <Tab />
           <PostForm />
-          <Post />
-          <Post />
-          <Post />
+          <PostRecommends />
         </TabProvider>
       </HydrationBoundary>
     </main>

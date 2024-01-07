@@ -48,6 +48,7 @@ export const handlers = [
       },
     });
   }),
+  // 여기부터
   http.get("/api/postRecommends", async ({ request }) => {
     await delay(3000);
     const url = new URL(request.url);
@@ -101,7 +102,7 @@ export const handlers = [
         createdAt: generateDate(),
       },
     ]);
-  }),
+  }), // 여기까지 코드 추가
   http.get("/api/followingPosts", async ({ request }) => {
     await delay(3000);
     return HttpResponse.json([
