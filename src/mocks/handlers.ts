@@ -184,6 +184,7 @@ export const handlers = [
       },
     ]);
   }), //여기까지 코드 추가
+  // 여기부터
   http.get("/api/users/:userId/posts", ({ request, params }) => {
     const { userId } = params;
     return HttpResponse.json([
@@ -315,4 +316,4 @@ export const handlers = [
       { tagId: 9, title: "나인초", count: 1264 },
     ]);
   }),
-];
+]; // 여기까지 코드 추가
