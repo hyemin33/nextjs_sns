@@ -8,10 +8,11 @@ import {
 import { getPostRecommends } from "@/app/(afterLogin)/home/_lib/getPostRecommends";
 import Post from "@/app/(afterLogin)/_component/Post";
 import { Post as IPost } from "@/model/Post";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 export default function PostRecommends() {
-  const { data } = useInfiniteQuery<
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
     IPost[],
     Object,
     InfiniteData<IPost[]>,
@@ -26,11 +27,29 @@ export default function PostRecommends() {
     getNextPageParam: (lastPage) => lastPage.at(-1)?.postId,
   });
 
-  return data?.pages.map((page, i) => (
-    <Fragment key={i}>
-      {page.map((post) => (
-        <Post key={post.postId} post={post} />
+  const { ref, inView } = useInView({
+    threshold: 0,
+    delay: 1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      // 데이터를 가져오고 있지 않을때,
+      // 가져올 데이터가 있을때
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, fetchNextPage, hasNextPage, isFetching]);
+
+  return (
+    <>
+      {data?.pages.map((page, i) => (
+        <Fragment key={i}>
+          {page.map((post) => (
+            <Post key={post.postId} post={post} />
+          ))}
+        </Fragment>
       ))}
-    </Fragment>
-  ));
+      <div ref={ref} style={{ height: 50 }} />
+    </>
+  );
 }
