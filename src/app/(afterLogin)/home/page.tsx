@@ -16,6 +16,8 @@ export default async function Home() {
   await queryClient.prefetchQuery({
     queryKey: ["posts", "recommends"],
     queryFn: getPostRecommends,
+    staleTime: 60 * 1000,
+    gcTime: 300 * 1000,
   });
   const dehydrateState = dehydrate(queryClient);
 

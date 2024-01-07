@@ -12,7 +12,7 @@ function RQProvider({ children }: Props) {
   const [client] = useState(
     new QueryClient({
       defaultOptions: {
-        // react-query 전역 설정
+        // react-query 전역 설정. 아래 설정하기
         queries: {
           refetchOnWindowFocus: false,
           retryOnMount: true,
