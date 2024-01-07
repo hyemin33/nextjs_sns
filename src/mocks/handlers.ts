@@ -103,6 +103,7 @@ export const handlers = [
       },
     ]);
   }), // 여기까지 코드 추가
+  // 여기부터
   http.get("/api/followingPosts", async ({ request }) => {
     await delay(3000);
     return HttpResponse.json([
@@ -182,7 +183,7 @@ export const handlers = [
         createdAt: generateDate(),
       },
     ]);
-  }),
+  }), //여기까지 코드 추가
   http.get("/api/users/:userId/posts", ({ request, params }) => {
     const { userId } = params;
     return HttpResponse.json([
